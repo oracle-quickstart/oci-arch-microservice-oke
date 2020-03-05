@@ -112,7 +112,7 @@ Lets push the image to OCIR (in ashburn region):
 
 Enter the username and password when asked.
 
-`Username` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
+`Username` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
 
 `Password` -> OCIR token we had created in Step 2
 
