@@ -55,11 +55,11 @@ Deploy:
 
 ### Step 1: Configure OCI-CLI
 
-On your local machine terminal, make sure oci-cli is installed using 
+On your local machine terminal, make sure oci-cli is installed using: 
 
 `oci -v`
 
-If not, follow below link to install and setup OCI-CLI.
+If not, follow the below link to install and setup OCI-CLI.
 
 `https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm`
 
@@ -84,13 +84,13 @@ Now, to setup kubeconfig, go to your OCI tenancy. On the left hand side click on
  
 Click on the cluster created by terraform earlier.
 
-On the top, click on `Access Kubeconfig` and run the commands specified (make sure you are inside the jenkins instance to run the commands). 
+On the top, click on `Access Kubeconfig` and run the commands specified.
 
 Once done, verify you can access the OKE nodes, by typing:
 
 `kubectl get nodes`
 
-You see details of the nodes running in the cluster.
+You will see the details of the nodes running on the cluster.
 
 ## Step 4: Push the images to OCIR
 
@@ -98,13 +98,13 @@ Lets pull in the image (Flask-Redis app) we want to deploy from docker hub. Make
 
 `docker pull testuser2000/microservice:flask-redis`
 
-Tag the image as below by replacing the details from your tenancy.
+Tag the image by adding the details specific to your tenancy.
 
 `docker tag testuser2000/microservice:flask-redis <region-prefix-name>/<your-tenancy-namespace>/customapp:custom`
 
-<region-prefix-name> -> eg: iad.ocir.io (for ashburn region)
+`<region-prefix-name>` -> eg: iad.ocir.io (for ashburn region)
 
-<your-tenancy-namespace> -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
 
 Lets push the image to OCIR (in ashburn region):
 
@@ -112,9 +112,9 @@ Lets push the image to OCIR (in ashburn region):
 
 Enter the username and password when asked.
 
-Username -> <your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here> (look for namespace in tenancy details on your OCI console for look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`Username` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
 
-Password -> OCIR token we had created in Step 2
+`Password` -> OCIR token we had created in Step 2
 
 Push the image as:
 
@@ -122,28 +122,29 @@ Push the image as:
 
 ## Step 5: Update kubernetes deployment files
 
-Clone the github repo for kubernetes deployment file as below:
+Clone the github repo for kubernetes deployment files as below:
 
 `git clone https://github.com/KartikShrikantHegde/k8s.git`
+
 `cd k8s`
 
 You should see 4 files. Update the `server-deployment.yaml`.
 
 In file `server-deployment.yaml`, go to line 17 and update the image label:
 
-<region-prefix-name> - eg: iad.ocir.io (for ashburn region)
+`<region-prefix-name>` - eg: iad.ocir.io (for ashburn region)
 
-<your-tenancy-namespace> -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
 
 Now, lets create a secret for the cluster.
 
 `kubectl create secret docker-registry secret --docker-server=<region-prefix-name> --docker-username='<username>' --docker-password='<ocir-token>' --docker-email='a@b.com'`
 
-<region-prefix-name> - eg: iad.ocir.io (for ashburn region)
+`<region-prefix-name>` - eg: iad.ocir.io (for ashburn region)
 
-<username> -> <your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<username>` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
 
-<ocir-token> -> OCIR token we had created in Step 2
+`<ocir-token>` -> OCIR token we had created in Step 2
 
 
 Finally, run below commands one after another to apply the configuration to the cluster.
@@ -175,7 +176,7 @@ On making a GET request:
 
 You receive a successful response:
 
-{ "hello": "999", "last_updated": "1583375217" }
+`{ "hello": "999", "last_updated": 1583375217 }`
 
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
