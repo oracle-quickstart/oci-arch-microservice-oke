@@ -71,7 +71,7 @@ Click on your `Profile` -> `User Settings`. On the bottom left, click on `Auth T
 
 Provide a discription and then hit `Generate Token`. This will generate a token. Make sure to copy the token and save it for future steps.
 
-## Step 3: Install kubectl and configure kube-config
+### Step 3: Install kubectl and configure kube-config
 
 Install kubectl using below command:
 
@@ -92,7 +92,7 @@ Once done, verify you can access the OKE nodes, by typing:
 
 You will see the details of the nodes running on the cluster.
 
-## Step 4: Push the images to OCIR
+### Step 4: Push the images to OCIR
 
 Lets pull in the image (Flask-Redis app) we want to deploy from docker hub. Make sure you have docker installed and is up and running on your machine.
 
@@ -104,7 +104,7 @@ Tag the image by adding the details specific to your tenancy.
 
 `<region-prefix-name>` -> eg: iad.ocir.io (for ashburn region)
 
-`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
 
 Lets push the image to OCIR (in ashburn region):
 
@@ -112,7 +112,7 @@ Lets push the image to OCIR (in ashburn region):
 
 Enter the username and password when asked.
 
-`Username` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`Username` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
 
 `Password` -> OCIR token we had created in Step 2
 
@@ -120,7 +120,7 @@ Push the image as:
 
 `docker push iad.ocir.io/<your-tenancy-namespace>/customapp:custom`
 
-## Step 5: Update kubernetes deployment files
+### Step 5: Update kubernetes deployment files
 
 Clone the github repo for kubernetes deployment files as below:
 
@@ -134,7 +134,7 @@ In file `server-deployment.yaml`, go to line 17 and update the image label:
 
 `<region-prefix-name>` - eg: iad.ocir.io (for ashburn region)
 
-`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<your-tenancy-namespace>` -> (look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
 
 Now, lets create a secret for the cluster.
 
@@ -142,7 +142,7 @@ Now, lets create a secret for the cluster.
 
 `<region-prefix-name>` - eg: iad.ocir.io (for ashburn region)
 
-`<username>` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for <your-tenancy-namespace>)
+`<username>` -> `<your-tenancy-namespace>/oracleidentitycloudservice/<your-oci-user-email-here>` (look for namespace in tenancy details on your OCI console for `<your-tenancy-namespace>`)
 
 `<ocir-token>` -> OCIR token we had created in Step 2
 
@@ -156,7 +156,7 @@ kubectl apply -f server-deployment.yaml
 kubectl apply -f server-lb-service.yaml
 ````
 
-Once applied, wait for 5 min and then run:
+Once applied, wait for 5 mins and then run:
 
 `kubectl get services`
 
