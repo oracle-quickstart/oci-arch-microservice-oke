@@ -4,6 +4,8 @@ The microservices architecture creates applications as a suite of small services
 
 This reference architecture creates Python Flask and Redis microservices and puts them in Docker containers. The microservices are deployed on Oracle Cloud Infrastructure through the Registry and Container Engine for Kubernetes services.
 
+For details of the architecture, see [Deploy microservices to a Kubernetes cluster](https://docs.oracle.com/en/solutions/deploy-microservices/index.html)
+
 ## Terraform Provider for Oracle Cloud Infrastructure
 The OCI Terraform Provider is now available for automatic download through the Terraform Provider Registry. 
 For more information on how to get started view the [documentation](https://www.terraform.io/docs/providers/oci/index.html) 
@@ -14,7 +16,30 @@ and [setup guide](https://www.terraform.io/docs/providers/oci/guides/version-3-u
 * [Github issues](https://github.com/terraform-providers/terraform-provider-oci/issues)
 * [Troubleshooting](https://www.terraform.io/docs/providers/oci/guides/guides/troubleshooting.html)
 
-## Clone the Module
+## Deploy Using Oracle Resource Manager
+
+1. Click [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://console.us-phoenix-1.oraclecloud.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-arch-ci-cd/raw/master/resource-manager/oci-arch-ci-cd.zip)
+
+    If you aren't already signed in, when prompted, enter the tenancy and user credentials.
+
+2. Review and accept the terms and conditions.
+
+3. Select the region where you want to deploy the stack.
+
+4. Follow the on-screen prompts and instructions to create the stack.
+
+5. After creating the stack, click **Terraform Actions**, and select **Plan**.
+
+6. Wait for the job to be completed, and review the plan.
+
+    To make any changes, return to the Stack Details page, click **Edit Stack**, and make the required changes. Then, run the **Plan** action again.
+
+7. If no further changes are necessary, return to the Stack Details page, click **Terraform Actions**, and select **Apply**. 
+
+## Deploy Using the Terraform CLI
+
+### Clone the Module
+
 Now, you'll want a local copy of this repo. You can make that with the commands:
 
     git clone https://github.com/oracle-quickstart/oci-arch-microservice-oke
@@ -186,8 +211,3 @@ When you no longer need the deployment, you can run this command to destroy it:
 ## Microservice Architecture
 
 ![](./images/microservices-oci.png)
-
-
-## Reference Archirecture
-
-- [Deploy microservices to a Kubernetes cluster](https://docs.oracle.com/en/solutions/deploy-microservices/index.html)
