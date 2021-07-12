@@ -6,7 +6,7 @@ variable "compartment_ocid" {}
 variable "tenancy_ocid" {}
 variable "vcn" {}
 variable "oke_cluster" {
-  type    = "map"
+  type    = map(string)
   default = {
     name           = "OKE_Cluster"
     k8s_version    = "v1.13.5"
